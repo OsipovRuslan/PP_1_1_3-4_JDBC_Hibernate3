@@ -52,7 +52,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        List<User> arrayList = new ArrayList<>();
+        List<User> userList = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
             while (resultSet.next()) {
@@ -61,12 +61,12 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setName(resultSet.getString("name"));
                 user.setLastName(resultSet.getString("last_name"));
                 user.setAge(resultSet.getByte("age"));
-                arrayList.add(user);
+                userList.add(user);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return arrayList;
+        return userList;
     }
 
     public void cleanUsersTable() {
