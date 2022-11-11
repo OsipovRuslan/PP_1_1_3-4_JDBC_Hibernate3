@@ -17,7 +17,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.createSQLQuery("CREATE TABLE IF NOT EXISTS users (" +
                     "id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT, " +
@@ -45,7 +45,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.save(new User(name, lastName, age));
             transaction.commit();
